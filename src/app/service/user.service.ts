@@ -38,7 +38,7 @@ export class UserService {
         email: user.email,
         username: user.login.username,
         gender: user.gender,
-        address: `${user.location.street.number} ${user.location.street.name} ${user.location.street.city}, ${user.location.street.country}`,
+        address: `${user.location.street.number} ${user.location.street.name} ${user.location.city}, ${user.location.country}`,
         dateOfBirth: user.dob.date,
         phone: user.phone,
         imageUrl: user.picture.medium,
