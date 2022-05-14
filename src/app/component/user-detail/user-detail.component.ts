@@ -10,6 +10,8 @@ import {Response} from "../../interface/response.interface";
 })
 export class UserDetailComponent implements OnInit {
   response: Response
+  mode: 'edit' | 'locked' = 'locked'
+  buttonText: 'Save changes' | 'Edit' = 'Edit'
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
   }
@@ -25,4 +27,11 @@ export class UserDetailComponent implements OnInit {
       })
   }
 
+  changeMode(mode?: 'edit' | 'locked'): void {
+    this.mode = this.mode == 'locked' ? 'edit' : 'locked'
+    this.buttonText = this.buttonText === 'Edit' ? 'Save changes' : 'Edit'
+    if (mode === 'edit') {
+
+    }
+  }
 }
