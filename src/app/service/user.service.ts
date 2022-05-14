@@ -19,7 +19,7 @@ export class UserService {
       )
   }
 
-  getUser(uuid: number = 1): Observable<any> {
+  getUser(uuid: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/?uuid=${uuid}`)
       .pipe(
         map(response => this.processResponse(response))
