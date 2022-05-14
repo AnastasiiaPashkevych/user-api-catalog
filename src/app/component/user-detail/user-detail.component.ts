@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {UserService} from "../../service/user.service";
-import {Response} from "../../interface/response.interface";
+import {User} from "../../interface/user.interface";
 
 @Component({
   selector: 'app-user-detail',
@@ -9,7 +9,7 @@ import {Response} from "../../interface/response.interface";
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  response: Response
+  user: User
   mode: 'edit' | 'locked' = 'locked'
   buttonText: 'Save changes' | 'Edit' = 'Edit'
 
@@ -17,14 +17,15 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap
-      .subscribe((params: ParamMap) => {
-        this.userService.getUser(params.get('uuid')!)
-          .subscribe((response: any) => {
-            console.log(response)
-            this.response = response
-          })
-      })
+    this.user = (<User>(this.activatedRoute.snapshot.data['resolvedResponse'].results[0]))
+    // this.activatedRoute.paramMap
+    //   .subscribe((params: ParamMap) => {
+    //     this.userService.getUser(params.get('uuid')!)
+    //       .subscribe((response: any) => {
+    //         console.log(response)
+    //         this.response = response
+    //       })
+    //   })
   }
 
   changeMode(mode?: 'edit' | 'locked'): void {
