@@ -12,14 +12,14 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUsers(size: number = 10): Observable<Response> {
+  getUsers(size: number = 10): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/?results=${size}`)
       .pipe(
         map(this.processResponse)
       )
   }
 
-  getUser(uuid: string): Observable<Response> {
+  getUser(uuid: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/?uuid=${uuid}`)
       .pipe(
         map(this.processResponse)
